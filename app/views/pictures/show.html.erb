@@ -1,0 +1,11 @@
+<p><%= @picture.title %></p>
+<p><%= image_tag(@picture.image)%></p>
+  <h1>Comments</h1>
+<% @picture.comments.each do |comment| %>
+
+      <li><p><%= comment.message %></p></li>
+<% end %>
+
+
+<%= link_to "Delete #{@picture.title}", picture_path(@picture), method: :delete %><br>
+<%= link_to "Comment #{@picture.title}", new_picture_comment_path(@picture) %>

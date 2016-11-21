@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
 
   def index
-    @pictures = Picture.order('created_at')
+    @pictures = Picture.all
   end
 
   def new
@@ -13,8 +13,19 @@ class PicturesController < ApplicationController
     if @picture.save
       redirect_to pictures_path
     else
-      'Error'
+      render 'new'
     end
+  end
+
+  def show
+    @picture = Picture.find(params[:id])
+  end
+
+  def destroy
+    @picture = Picture.find(params[:id])
+    @picture.destroy
+    flash[:notice] = 'Picture deleted'
+    redirect_to '/pictures'
   end
 
   private
