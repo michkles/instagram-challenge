@@ -25,6 +25,8 @@ feature 'pictures' do
 
   context 'creating pictures' do
     scenario 'user can add a picture' do
+      sign_up
+      sign_in
       visit '/pictures'
       click_link 'Add a picture'
       fill_in 'Title', with: 'baboon'
@@ -52,11 +54,13 @@ feature 'pictures' do
   before { Picture.create title: 'baboon' }
 
   scenario 'let a user delete a picture' do
-   visit '/pictures'
-   click_link ''
-   click_link 'Delete baboon'
-   expect(page).not_to have_content 'bab'
-   expect(page).to have_content 'Picture deleted'
+    sign_up
+    sign_in
+    visit '/pictures'
+    click_link ''
+    click_link 'Delete baboon'
+    expect(page).not_to have_content 'bab'
+    expect(page).to have_content 'Picture deleted'
   end
 
 end

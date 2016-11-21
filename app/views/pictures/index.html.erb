@@ -1,6 +1,6 @@
 <% if @pictures.any? %>
   <% @pictures.each do |picture| %>
-    <%= link_to image_tag(picture.image.url), picture_path(picture) %><br>
+    <p><%= link_to image_tag(picture.image.url), picture_path(picture) %></p><br>
   <% end %>
 <% else %>
     <p>No pictures</p>
